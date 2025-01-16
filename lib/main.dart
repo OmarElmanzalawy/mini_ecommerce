@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/screens/home_screen.dart';
 import 'package:mini_ecommerce/screens/sign_in_screen.dart';
 import 'package:mini_ecommerce/screens/sign_up_screen.dart';
 import 'package:mini_ecommerce/screens/splash_screen.dart';
@@ -25,6 +26,10 @@ final GoRouter _router = GoRouter(
       path: '/signup',
       builder: (context, state) => SignUpScreen(),
     ),
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => HomeScreen(),
+    ),
 ]);
 
 class MainApp extends StatelessWidget {
@@ -40,7 +45,8 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.light(
           primary: kprimaryBackground1,
           secondary: kprimaryBackground2,
-        )
+        ),
+
       ),
     );
   }

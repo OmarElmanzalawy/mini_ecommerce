@@ -64,7 +64,9 @@ class SignIn extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 90.0),
             child: ElevatedButton(
-              onPressed: () async{},
+              onPressed: () async{
+                context.go('/home');
+              },
               style: ButtonStyle(
                 padding: WidgetStatePropertyAll(EdgeInsets.all(12)),
                 backgroundColor: WidgetStatePropertyAll(kteal),
