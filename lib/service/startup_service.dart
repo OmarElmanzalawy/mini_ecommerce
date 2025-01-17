@@ -15,7 +15,7 @@ class StartupService {
     options: DefaultFirebaseOptions.currentPlatform
   );
   print('Firebase Initialized');
-  await FirebaseAuth.instance.signOut();
+  // await FirebaseAuth.instance.signOut();
   setupLocator();
   
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/service/init_get_it.dart';
 import 'package:mini_ecommerce/service/startup_service.dart';
@@ -38,7 +39,9 @@ class HomeScreen extends ConsumerWidget {
           ),
         actions: [
           GestureDetector(
-            onTap: (){},
+            onTap: (){
+              context.push('/cart');
+            },
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white60,
