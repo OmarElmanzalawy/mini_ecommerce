@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/models/product_model.dart';
 import 'package:mini_ecommerce/widgets/frosted.dart';
@@ -16,6 +17,7 @@ class ProductCard extends StatelessWidget {
         GestureDetector(
           onTap: (){
             print('Product Clicked');
+            context.push('/productdetails',extra: model);
           },
           child: Frosted(
             child: Container(
@@ -25,7 +27,9 @@ class ProductCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 color: kteal.withOpacity(0.2),
               ),
-              child: Image.network(model.image,fit: BoxFit.contain,),
+              child: Hero(
+                tag: model.id,
+                child: Image.network(model.image,fit: BoxFit.contain,)),
             ),
           ),
         ),

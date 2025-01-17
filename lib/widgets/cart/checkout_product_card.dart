@@ -28,7 +28,7 @@ class CheckoutProductCard extends StatelessWidget {
                   width: 100,
                   height: 125,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.blueGrey.shade300,
                     image: DecorationImage(image: AssetImage('assets/images/hoodie.png'),fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(12)
                     ),

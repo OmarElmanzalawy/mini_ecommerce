@@ -17,6 +17,9 @@ class ActionButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: padding ?? 25.0),
       child: ElevatedButton(
         style:ButtonStyle(
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+          ),
           elevation: WidgetStatePropertyAll(0),
           backgroundColor: WidgetStatePropertyAll(color ?? kteal,),
           splashFactory: NoSplash.splashFactory

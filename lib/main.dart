@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/models/product_model.dart';
 import 'package:mini_ecommerce/screens/cart_screen.dart';
 import 'package:mini_ecommerce/screens/home_screen.dart';
+import 'package:mini_ecommerce/screens/product_details_screen.dart';
 import 'package:mini_ecommerce/screens/sign_in_screen.dart';
 import 'package:mini_ecommerce/screens/sign_up_screen.dart';
 import 'package:mini_ecommerce/screens/splash_screen.dart';
@@ -40,6 +42,13 @@ final GoRouter _router = GoRouter(
      GoRoute(
       path: '/cart',
       builder: (context, state) => CartScreen(),
+    ),
+    GoRoute(
+      path: '/productdetails',
+      builder: (context, state) {
+        final product = state.extra as ProductModel;
+        return ProductDetailsScreen(model: product,);
+      }
     ),
 ]);
 
