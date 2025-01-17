@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/view_model/cart_provider.dart';
 import 'package:mini_ecommerce/widgets/action_button.dart';
 import 'package:mini_ecommerce/widgets/cart/checkout_product_card.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends ConsumerWidget {
   const CartScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     final Size size = MediaQuery.sizeOf(context);
+    final cartProducts = ref.watch(cartProvider);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -28,9 +31,9 @@ class CartScreen extends StatelessWidget {
                 child: ListView.separated(
                   separatorBuilder: (context, index) => const SizedBox(height: 20,),
                   padding: EdgeInsets.zero,
-                  itemCount: 12,
+                  itemCount: cartProducts.cartProducts.length,
                   itemBuilder: (context,index){
-                    return CheckoutProductCard();
+                    return CheckoutProductCard(model: cartProducts.cartProducts[index],);
                   }
                   ),
               ),
@@ -41,7 +44,7 @@ class CartScreen extends StatelessWidget {
                 children: [
                   Text('Total: 500\$',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Spacer(),
-                  ActionButton(text: 'Checkout',width: 120,padding: 0,)
+                  ActionButton(text: 'Checkout',width: 120,padding: 0),
                 ],
               ),
             )

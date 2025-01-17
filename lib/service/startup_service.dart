@@ -15,7 +15,7 @@ class StartupService {
     options: DefaultFirebaseOptions.currentPlatform
   );
   print('Firebase Initialized');
-  // await FirebaseAuth.instance.signOut();
+  await FirebaseAuth.instance.signOut();
   setupLocator();
   
 }
@@ -25,6 +25,7 @@ Future loadLocalData(WidgetRef ref)async{
   Future.microtask(()async{
   print('microtasking');
   await ref.read(productsProvider.notifier).fetchProducts();
+  ref.read(productsProvider.notifier).categorizeProducts();
   });
 
 }

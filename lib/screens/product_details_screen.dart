@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/models/product_model.dart';
+import 'package:mini_ecommerce/view_model/cart_provider.dart';
 import 'package:mini_ecommerce/widgets/action_button.dart';
 import 'package:mini_ecommerce/widgets/frosted.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends ConsumerWidget {
   const ProductDetailsScreen({super.key, required this.model});
 
   final ProductModel model;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     final Size size = MediaQuery.sizeOf(context);
     print(model.title);
     return Scaffold(
@@ -84,14 +86,26 @@ class ProductDetailsScreen extends StatelessWidget {
                           // color: Colors.red,
                            child: Row(
                 children: [
-                  Text('Total: 500\$',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white70),),
+                  Text('${model.price}\$',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white70),),
                   Spacer(),
                   ActionButton(
+                    ontap: (){
+                      final bool didAdd = ref.read(cartProvider.notifier).addToCart(model);
+                      if(didAdd){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      // behavior: SnackBarBehavior.floating,
+                      // margin: EdgeInsets.only(bottom: size.height - )  ,
+                      content: Text('Product Added To Cart'),
+                      backgroundColor: kteal,
+                      )
+                  );
+                      }
+                                          } ,
                     text: 'Add to Cart',
                     width: 120,
                     padding: 0,
                     color: Colors.black,
-                    
                     )
                 ],
               ),

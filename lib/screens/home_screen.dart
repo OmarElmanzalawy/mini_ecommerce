@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/constants/enums.dart';
 import 'package:mini_ecommerce/service/init_get_it.dart';
 import 'package:mini_ecommerce/service/startup_service.dart';
 import 'package:mini_ecommerce/view_model/products_provider.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context,WidgetRef ref) {
     final products = ref.watch(productsProvider);
+    final productsList = ref.read(productsProvider.notifier).mapCategoryToList();
     print(products.products);
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -71,31 +73,43 @@ class HomeScreen extends ConsumerWidget {
                 leading: Icon(Icons.search,color: kteal,),
               ),
               const SizedBox(height: 20,),
-              Row(
-                spacing: 20,
-                children: [
-                 CategoryCard(name: 'All',isSelected: true,),
-                 CategoryCard(name: 'Men'),
-                 CategoryCard(name: 'Women'),
-                 CategoryCard(name: 'Jewlery'),
-                ],
+              Expanded(
+                flex: 1,
+                child: ListView(
+                  // shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                   CategoryCard(name: 'All',category: ActiveCategory.All,),
+                   const SizedBox(width: 20,),
+                   CategoryCard(name: 'Men',category: ActiveCategory.Men,),
+                   const SizedBox(width: 20,),
+                   CategoryCard(name: 'Women',category: ActiveCategory.Women,),
+                   const SizedBox(width: 20,),
+                   CategoryCard(name: 'Jewlery',category: ActiveCategory.Jewlery,),
+                   const SizedBox(width: 20,),
+                   CategoryCard(name: 'Electronics',category: ActiveCategory.Electronics,),
+                  ],
+                ),
               ),
               const SizedBox(height: 15,),
               Expanded(
-                child: GridView.builder(
-                  padding: EdgeInsets.zero,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 100,
-                    crossAxisSpacing: 0,
+                flex: 14,
+                child: AnimatedSwitcher(
+                  duration: Duration(milliseconds: 500),
+                  child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 100,
+                      crossAxisSpacing: 0,
+                      ),
+                    itemCount: productsList.length,
+                    itemBuilder: (context, index) {
+                      return ProductCard(model: productsList[index],);
+                    },
+                  
                     ),
-                  itemCount: products.products.length,
-                  itemBuilder: (context, index) {
-                    return ProductCard(model: products.products[index],);
-                    
-                  },
-                
-                  ),
+                ),
               )
             ],
           ),

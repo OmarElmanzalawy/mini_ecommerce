@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/constants/app_styles.dart';
+import 'package:mini_ecommerce/models/product_model.dart';
+import 'package:mini_ecommerce/view_model/cart_provider.dart';
 import 'package:mini_ecommerce/widgets/frosted.dart';
 
-class CheckoutProductCard extends StatelessWidget {
-  const CheckoutProductCard({super.key});
+class CheckoutProductCard extends ConsumerWidget {
+  const CheckoutProductCard({super.key, required this.model});
+
+  final ProductModel model;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     final Size size = MediaQuery.sizeOf(context);
     return Stack(
       children: [
@@ -29,7 +34,7 @@ class CheckoutProductCard extends StatelessWidget {
                   height: 125,
                   decoration: BoxDecoration(
                     color: Colors.blueGrey.shade300,
-                    image: DecorationImage(image: AssetImage('assets/images/hoodie.png'),fit: BoxFit.cover),
+                    image: DecorationImage(image: NetworkImage(model.image),fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(12)
                     ),
                   ),
@@ -39,17 +44,21 @@ class CheckoutProductCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Product Title',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: kteal),),
+                  Text(model.title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: kteal),),
                   const SizedBox(height: 2,),
                   Text('Category',style: TextStyle(color: kteal,fontWeight: FontWeight.w300),),
                   const SizedBox(height: 2,),
-                  Text('\$120',style: TextStyle(fontSize: 15,color: kteal,),),
+                  Text('\$${model.price}',style: TextStyle(fontSize: 15,color: kteal,),),
                   Spacer(),
                   Container(
                     width: 200,
                     // color: Colors.red,
                     alignment: Alignment.centerRight,
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.delete,color: Colors.red,)),
+                    child: IconButton(
+                      onPressed: (){
+                      ref.read(cartProvider.notifier).removeFromCart(model);
+                    },
+                     icon: Icon(Icons.delete,color: Colors.red,)),
                   )
                 ],
               )
