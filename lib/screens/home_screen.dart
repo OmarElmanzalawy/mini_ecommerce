@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/service/init_get_it.dart';
+import 'package:mini_ecommerce/service/startup_service.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 import 'package:mini_ecommerce/widgets/home/category_card.dart';
 import 'package:mini_ecommerce/widgets/home/product_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getIt<StartupService>().loadLocalData(ref);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +100,7 @@ class HomeScreen extends StatelessWidget {
                   itemCount: 7,
                   itemBuilder: (context, index) {
                     return ProductCard();
+                    
                   },
                 
                   ),

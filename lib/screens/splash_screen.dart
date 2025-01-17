@@ -1,7 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mini_ecommerce/providers/splash_dot_index_notifier.dart';
+import 'package:mini_ecommerce/view_model/splash_dot_index_notifier.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 import 'package:mini_ecommerce/widgets/splash/splash_btn.dart';
 import 'package:mini_ecommerce/widgets/splash/splash_item.dart';

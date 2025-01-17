@@ -6,8 +6,11 @@ import 'package:mini_ecommerce/screens/home_screen.dart';
 import 'package:mini_ecommerce/screens/sign_in_screen.dart';
 import 'package:mini_ecommerce/screens/sign_up_screen.dart';
 import 'package:mini_ecommerce/screens/splash_screen.dart';
+import 'package:mini_ecommerce/service/init_get_it.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  setupLocator();
   runApp(ProviderScope(child: const MainApp()));
 }
 

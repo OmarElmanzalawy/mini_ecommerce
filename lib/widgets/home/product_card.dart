@@ -10,15 +10,20 @@ class ProductCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Frosted(
-          child: Container(
-            width: 150,
-            height: 200,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: kteal.withOpacity(0.2),
+        GestureDetector(
+          onTap: (){
+            print('Product Clicked');
+          },
+          child: Frosted(
+            child: Container(
+              width: 150,
+              height: 200,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: kteal.withOpacity(0.2),
+              ),
+              child: Image.asset('assets/images/hoodie.png',fit: BoxFit.contain,),
             ),
-            child: Image.asset('assets/images/hoodie.png',fit: BoxFit.contain,),
           ),
         ),
         const SizedBox(height: 7,),
