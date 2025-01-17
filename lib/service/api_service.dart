@@ -12,7 +12,7 @@ class ApiService {
 
   if(response.statusCode == 200){
     print("Success");
-    print(response.data);
+    // print(response.data);
     final List<dynamic> lst = response.data;
     return lst.cast<Map<String,dynamic>>();
 

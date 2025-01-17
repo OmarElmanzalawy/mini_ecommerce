@@ -21,10 +21,13 @@ class ProductsProvider extends StateNotifier<ProductsState>{
       ProductModel.fromJson(product)
     ).toList();
 
-    state.copyWith(
+    print('PROVIDER MAPPED LIST $productModelsList');
+
+    state = state.copyWith(
       products: productModelsList
     );
     print("PRODUCTS UPDATED");
+    print('PROVIDER MAPPED LIST ${state.products}');
   }
   else{
     //TODO DISPLAY SOME FEEDBACK TO USER

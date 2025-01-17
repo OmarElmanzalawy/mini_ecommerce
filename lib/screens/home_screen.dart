@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/service/init_get_it.dart';
 import 'package:mini_ecommerce/service/startup_service.dart';
+import 'package:mini_ecommerce/view_model/products_provider.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 import 'package:mini_ecommerce/widgets/home/category_card.dart';
 import 'package:mini_ecommerce/widgets/home/product_card.dart';
@@ -26,6 +27,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final products = ref.watch(productsProvider);
+    print(products.products);
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar:  AppBar(
@@ -97,9 +100,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     mainAxisSpacing: 100,
                     crossAxisSpacing: 0,
                     ),
-                  itemCount: 7,
+                  itemCount: products.products.length,
                   itemBuilder: (context, index) {
-                    return ProductCard();
+                    return ProductCard(model: products.products[index],);
                     
                   },
                 
