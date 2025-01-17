@@ -7,6 +7,7 @@ import 'package:mini_ecommerce/models/product_model.dart';
 import 'package:mini_ecommerce/screens/cart_screen.dart';
 import 'package:mini_ecommerce/screens/home_screen.dart';
 import 'package:mini_ecommerce/screens/product_details_screen.dart';
+import 'package:mini_ecommerce/screens/profile_screen.dart';
 import 'package:mini_ecommerce/screens/sign_in_screen.dart';
 import 'package:mini_ecommerce/screens/sign_up_screen.dart';
 import 'package:mini_ecommerce/screens/splash_screen.dart';
@@ -49,6 +50,10 @@ final GoRouter _router = GoRouter(
         final product = state.extra as ProductModel;
         return ProductDetailsScreen(model: product,);
       }
+    ),
+      GoRoute(
+      path: '/profile',
+      builder: (context, state) => ProfileScreen()
     ),
 ]);
 

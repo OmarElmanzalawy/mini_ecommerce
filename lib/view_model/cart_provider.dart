@@ -25,6 +25,20 @@ class CartProvider extends  StateNotifier<CartState> {
     }
   }
 
+  double calculateTotal(){
+    final List<ProductModel> products = state.cartProducts;
+    double sum = 0;
+    if(products.isEmpty){
+      return 0;
+    }
+    else{
+      for(var product in products){
+        sum += product.price;
+      }
+      return sum;
+    }
+  }
+
   bool removeFromCart(ProductModel product){
     try{
     final cartProducts = state.cartProducts;

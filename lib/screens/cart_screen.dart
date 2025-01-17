@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/view_model/cart_provider.dart';
+import 'package:mini_ecommerce/view_model/products_provider.dart';
 import 'package:mini_ecommerce/widgets/action_button.dart';
 import 'package:mini_ecommerce/widgets/cart/checkout_product_card.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
@@ -42,7 +43,7 @@ class CartScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 30),
               child: Row(
                 children: [
-                  Text('Total: 500\$',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                  Text('Total: ${ref.read(cartProvider.notifier).calculateTotal()}\$',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                   Spacer(),
                   ActionButton(text: 'Checkout',width: 120,padding: 0),
                 ],
