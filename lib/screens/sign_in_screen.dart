@@ -1,6 +1,8 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/service/auth_service.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 import 'package:mini_ecommerce/widgets/titled_textfield.dart';
 
@@ -65,7 +67,37 @@ class SignIn extends StatelessWidget {
             padding: const EdgeInsets.only(top: 90.0),
             child: ElevatedButton(
               onPressed: () async{
-                context.go('/home');
+                if(EmailValidator.validate(_emailcontroller.text)){
+
+                                 final didLogin = await AuthService.login(email: _emailcontroller.text, password: _passwordcontroller.text);
+                if(didLogin){
+                  context.go('/home');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Login Successfully'),
+                      backgroundColor: kteal,
+                      )
+                  );
+                }
+                else{
+                    ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Something unexpected happened'),
+                      backgroundColor: Colors.red,
+                      )
+                  );
+                }
+
+                }
+                else{
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Please Enter A Valid Email'),
+                      backgroundColor: Colors.red,
+                      )
+                  );
+                }
+ 
               },
               style: ButtonStyle(
                 padding: WidgetStatePropertyAll(EdgeInsets.all(12)),

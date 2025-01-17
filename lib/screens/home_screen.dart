@@ -8,25 +8,11 @@ import 'package:mini_ecommerce/widgets/gradient_background.dart';
 import 'package:mini_ecommerce/widgets/home/category_card.dart';
 import 'package:mini_ecommerce/widgets/home/product_card.dart';
 
-class HomeScreen extends ConsumerStatefulWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  ConsumerState<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends ConsumerState<HomeScreen> {
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getIt<StartupService>().loadLocalData(ref);
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     final products = ref.watch(productsProvider);
     print(products.products);
     return Scaffold(

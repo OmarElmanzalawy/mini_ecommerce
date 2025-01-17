@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,15 +8,17 @@ import 'package:mini_ecommerce/screens/sign_in_screen.dart';
 import 'package:mini_ecommerce/screens/sign_up_screen.dart';
 import 'package:mini_ecommerce/screens/splash_screen.dart';
 import 'package:mini_ecommerce/service/init_get_it.dart';
+import 'package:mini_ecommerce/service/startup_service.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
+  await StartupService.init();
+
   runApp(ProviderScope(child: const MainApp()));
 }
 
 final GoRouter _router = GoRouter(
-  initialLocation: '/signin',
+  initialLocation: '/splash',
   routes: [
     GoRoute(
       path: '/splash',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
+import 'package:mini_ecommerce/service/auth_service.dart';
 import 'package:mini_ecommerce/widgets/titled_textfield.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -65,7 +66,24 @@ class SignUpScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 30.0),
             child: ElevatedButton(
               onPressed: () async{
-
+                final bool didRegister = await AuthService.registerUser(username: _usernameController.text, email: _emailController.text, password: _passwordController.text);
+                if(didRegister){
+                  context.go('/home');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Account Registered'),
+                      backgroundColor: kteal,
+                      )
+                  );
+                }
+                else{
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Something unexpected happened'),
+                      backgroundColor: Colors.red,
+                      )
+                  );
+                }
               },
               style: ButtonStyle(
                 padding: WidgetStatePropertyAll(EdgeInsets.all(12)),
