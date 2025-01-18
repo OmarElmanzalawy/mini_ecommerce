@@ -5,6 +5,7 @@ import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/constants/app_styles.dart';
 import 'package:mini_ecommerce/models/product_model.dart';
 import 'package:mini_ecommerce/screens/product_details_screen.dart';
+import 'package:mini_ecommerce/utils/app_utils.dart';
 import 'package:mini_ecommerce/view_model/cart_provider.dart';
 import 'package:mini_ecommerce/widgets/frosted.dart';
 
@@ -50,10 +51,9 @@ class CheckoutProductCard extends ConsumerWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(model.title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: kteal),),
+                    Text(AppUtils.splitLongWords(model.title),style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: kteal),),
                     const SizedBox(height: 2,),
                     Text('Category',style: TextStyle(color: kteal,fontWeight: FontWeight.w300),),
-                    const SizedBox(height: 2,),
                     Text('\$${model.price}',style: TextStyle(fontSize: 15,color: kteal,),),
                     Spacer(),
                     Container(

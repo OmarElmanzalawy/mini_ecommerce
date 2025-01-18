@@ -75,7 +75,7 @@ class ProductDetailsScreen extends ConsumerWidget {
                             child: ListView(
                               padding: EdgeInsets.zero,
                               children: [
-                                                          Text(model.title,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),
+                              Text(model.title,style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.white),),
                             const SizedBox(height: 5,),
                             Text(model.description,style: TextStyle(color: Colors.white),textAlign: TextAlign.start,)
                               ],

@@ -14,14 +14,7 @@ class CartScreen extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     final Size size = MediaQuery.sizeOf(context);
     final cartProducts = ref.watch(cartProvider);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text('My Cart',style: TextStyle(color: kteal),),
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: kteal),
-      ),
-      body: GradientBackground(
+    return GradientBackground(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -51,7 +44,6 @@ class CartScreen extends ConsumerWidget {
             )
           ],
         )
-        )
-    );
+        );
   }
 }

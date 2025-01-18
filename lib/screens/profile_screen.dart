@@ -9,15 +9,7 @@ class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: kteal),
-        centerTitle: true,
-        title: Image.asset('assets/images/logo.png',fit: BoxFit.cover,width: 100,height: 70,color: kteal,),
-      ),
-      body: GradientBackground(
+    return GradientBackground(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -57,7 +49,6 @@ class ProfileScreen extends StatelessWidget {
              const SizedBox(height: 10,),
             ],
           ),
-        )
         )
     );
   }
