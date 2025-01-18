@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mini_ecommerce/constants/app_colors.dart';
 import 'package:mini_ecommerce/models/product_model.dart';
+import 'package:mini_ecommerce/widgets/action_button.dart';
 import 'package:mini_ecommerce/widgets/gradient_background.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.sizeOf(context);
     return GradientBackground(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -42,11 +45,20 @@ class ProfileScreen extends StatelessWidget {
                         Text(FirebaseAuth.instance.currentUser!.email!,style: TextStyle(color: Colors.white,fontSize: 15),),
                       ],
                      ),
+                     
                    ],
                  ),
                ),
              ),
-             const SizedBox(height: 10,),
+             const SizedBox(height: 30,),
+             ActionButton(
+              ontap: ()async{
+               await FirebaseAuth.instance.signOut();
+               context.go('/signin');
+              },
+              text: 'Logout',
+              color: Colors.red,
+              )
             ],
           ),
         )
